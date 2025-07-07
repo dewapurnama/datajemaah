@@ -13,4 +13,4 @@ conn = st.connection("select * from ibbank.bankreportjournal where tx_code = 'HJ
 # Perform query.
 df = conn.query('SELECT * FROM mytable;', ttl="10m")
 
-st.write(df)
+st.dataframe(df)
