@@ -10,7 +10,13 @@ import streamlit as st
 # Initialize connection.
 conn = st.connection("postgresql", type="sql")
 
-# Perform query.
-df = conn.query('select * from ibbank.bankreportjournal where tx_code = 'HJOA' and kode_valuta = 'USD' and tx_date >= date '2025-06-01' and tx_date < '2025-06-30'', ttl="10m")
+df = conn.query("""
+    SELECT * 
+    FROM ibbank.bankreportjournal 
+    WHERE tx_code = 'HJOA' 
+      AND kode_valuta = 'USD' 
+      AND tx_date >= DATE '2025-06-01' 
+      AND tx_date < DATE '2025-06-30'
+""", ttl="10m")
 
 st.dataframe(df)
